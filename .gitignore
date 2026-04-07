@@ -1,0 +1,9 @@
+# ignore everything
+*
+
+# allow logs2 folder
+!logs2/
+!logs2/**
+
+# (optional) allow this file itself
+!.gitignore
