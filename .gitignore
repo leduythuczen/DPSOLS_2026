@@ -4,6 +4,7 @@
 # allow logs2 folder
 !logs2/
 !logs2/**
-
+!logs3/
+!logs3/**
 # (optional) allow this file itself
 !.gitignore
