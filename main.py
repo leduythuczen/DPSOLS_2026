@@ -8,11 +8,13 @@ from parameter import (
 import time
 import os
 import csv
+import multiprocessing as mp
 
 
 def save_results_to_csv(bitstring, score, elapsed_time):
     os.makedirs("logs", exist_ok=True)
     csv_path = "logs/final_result.csv"
+
     with open(csv_path, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["Metric", "Value"])
@@ -21,8 +23,10 @@ def save_results_to_csv(bitstring, score, elapsed_time):
         writer.writerow(["Elapsed Time (s)", elapsed_time])
         writer.writerow([])
         writer.writerow(["Bit Index", "Bit Value"])
+
         for idx, val in enumerate(bitstring):
             writer.writerow([idx, val])
+
     print(f"[📄] Results saved to {csv_path}")
 
 
@@ -36,13 +40,26 @@ def print_summary(bitstring, score, elapsed_time):
 
 
 if __name__ == "__main__":
+    mp.freeze_support()  # 🔥 important for multiprocessing
+
     print(f"[STARTING] Binary PSO Optimization for {DESIGN_PATH}")
     print(f"   Mode: {QOR_MODE.upper()} | Particles: {N_PARTICLES} | Iterations: {MAX_ITER}")
 
     start_time = time.time()
 
-    b_pso = BinaryPSO(N_PARTICLES, N_DIMENSIONS, MAX_ITER, INERTIA, COGNITIVE, SOCIAL)
-    best_position, best_score = b_pso.optimize(DESIGN_PATH, qor_mode=QOR_MODE)
+    b_pso = BinaryPSO(
+        N_PARTICLES,
+        N_DIMENSIONS,
+        MAX_ITER,
+        INERTIA,
+        COGNITIVE,
+        SOCIAL
+    )
+
+    best_position, best_score = b_pso.optimize(
+        DESIGN_PATH,
+        qor_mode=QOR_MODE
+    )
 
     end_time = time.time()
     elapsed_time = end_time - start_time

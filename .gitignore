@@ -6,5 +6,7 @@
 !logs2/**
 !logs3/
 !logs3/**
+!logs5/
+!logs5/**
 # (optional) allow this file itself
 !.gitignore

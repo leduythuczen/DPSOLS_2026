@@ -10,8 +10,8 @@ COGNITIVE = 1.7
 SOCIAL = 1.3
 
 # Optimization target
-QOR_MODE = "combined"  # options: "lut", "level", "combined"
-DESIGN_PATH = "benchmarks/arithmetic/log2.blif"
+QOR_MODE = "combined"
+DESIGN_PATH = "benchmarks/arithmetic/square.blif"
 
 # QoR tuning
 STALL_LIMIT = 15
@@ -20,3 +20,10 @@ MUTATION_RATE = 0.2
 
 # Plot and log
 CONVERGENCE_PLOT_PATH = "logs/convergence_plot.png"
+
+# 🔥 NEW: Parallel settings
+USE_MULTICORE = True
+N_CORES = 15  # or use: os.cpu_count()
+
+# 🔥 NEW: Local search toggle
+USE_LOCAL_SEARCH = False
